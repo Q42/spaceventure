@@ -1,0 +1,39 @@
+#debugger {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  min-width: 150px; min-height: 10px;
+  padding: 10px;
+  background: rgba(0,0,0,.4);
+  z-index: 99999;
+  font-size: 12px;
+  cursor: auto;
+  color: #fff;
+  -webkit-transition: all linear .2s;
+}
+#debugger select { 
+  width: 150px;
+}
+#debugcanvas {
+  position: absolute;
+  left: 0; top: 0;
+  pointer-events: none;
+  z-index: 999999;
+}
+.debugging #avatar { 
+  outline: solid red 1px;
+}
+body.ctrlDown, body.shiftDown {
+  cursor: crosshair;
+}
+#debugger textarea { 
+  width: 150px;
+  height: 150px;
+  font-size: 10px;
+}
+.notdebugging #debugger select,
+.notdebugging #debugger textarea,
+.notdebugging #debugger span,
+.notdebugging #debugger br {
+  display: none;
+}
+.notdebugging #debugger { bottom: auto;}

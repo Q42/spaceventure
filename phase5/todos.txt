@@ -1,0 +1,4 @@
+Parser & Keyboard nav
+
+- bij cursorstateoverride onthouden welke actie het was (ipv kijken naar muiscursor)
+- bij keyboard actie niet huidige actionmethod aanroepen maar 1 eerder in pipeline

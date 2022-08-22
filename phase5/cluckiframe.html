@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cluck Y'egger iframe tester</title>
+</head>
+<body>
+<iframe src="cluck.html" width="940" height="706"></iframe>
+<button onclick="window.frames[0].cluck.start(); window.frames[0].focus();">start</button>
+<script>
+function cluckEnd() {
+	alert('cluckEnd');
+}
+</script>
+</body>
+</html>

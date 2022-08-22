@@ -1,0 +1,21 @@
+{
+  "name": "SpaceVenture Living Concept Art: Phase 4",
+  "version": "0.2",
+  "manifest_version": 1,
+
+  "description": "We've reached $400,000, so here's the fourth playable demo of the SpaceVenture living concept art! Have fun!",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+  },
+
+  "homepage_url": "http://tgakick.com/",
+  "offline_enabled": true
+}

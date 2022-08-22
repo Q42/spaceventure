@@ -1,0 +1,199 @@
+<!doctype html>
+<html manifest="cache.manifest">
+  <head>
+    <title>SpaceVenture Kickstarter Living Concept Art - Phase 5</title>
+
+    <meta name="description" content="Playable demo of Guys From Andromeda's living concept art for Spaceventure." />
+
+    <meta name="http-equiv" content="Content-type: text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+
+    <link rel="icon" type="image/png" href="icon16.png" />
+    <link rel="shortcut icon" href="icon16.png" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=940, initial-scale=1.09, user-scalable=no"/>
+    <link rel="apple-touch-icon" href="icon128-ios.png"/>
+
+    <link href="css/animations.css" type="text/css" rel="stylesheet" />
+    <link href="css/moz-animations.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+    <link href="css/add2home.css" rel="stylesheet" />
+    <script type="text/javascript">
+      var addToHomeConfig = {
+        autostart: true,
+        lifespan: 1000 * 3600,
+        expire: 0
+      };
+    </script>
+	  <script src="js/add2home.js" charset="utf-8"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/dialog.js" charset="utf-8"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/scene1.js"></script>
+    <script src="js/bufferloader.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/preload.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/avatar.js"></script>
+    <script src="js/parser.js"></script>
+
+<!--    <script src="js/debugger.js"></script>
+
+-->    <link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'/>
+  </head>
+  <body>
+    <div id="game">
+
+      <div id="prev-canvas"></div>
+      <div id="dialog" class="hidden"><div id="dialog-text"></div></div>
+
+      <div id="eraser" class="desktop-prop"></div>
+      <div id="eraser-crumbs" class="desktop-prop"></div>
+      <div id="tape-top" class="desktop-prop"></div>
+      <div id="tape-bottom-right" class="desktop-prop"></div>
+      <div id="pen" class="desktop-prop"></div>
+
+      <div id="dos">
+        MS-DOS Version 3.2<br/>
+        (C)Copyright 1987 Microsoft Inc.<br/><br/>
+        C:\Games\SpaceVenture&gt;demo5.bat<br/><br/>
+        Thanks for playing our demo!<br/><br/>
+        C:\Games\SpaceVenture&gt;<span class="blink">|</span>
+      </div>
+
+      <div id="splash">
+        <div id="logo"></div>
+        <div id="dome"></div>
+        <div id="current-phase"></div>
+        <div id="q42"></div>
+        <div id="avatarsketch"></div>
+      </div>
+
+      <div id="commandline">
+        <span id="command"></span><span id="cursor">|</span>
+        <div id="mic">
+          <input autocomplete="off" type="text" id="speech" x-webkit-speech x-webkit-grammar="builtin:search"/>
+        </div>
+      </div>
+
+      <div id="canvas">
+        <div id="innercanvas">
+          <div id="avatar" class="hidden"></div>
+          <div id="dialog" class="hidden">
+            <div id="dialog-close"></div>
+            <div id="dialog-text"></div>
+          </div>
+          <div id="icons">
+            <div id="icon-eye" data-icon="eye" class="icon"></div>
+            <div id="icon-walk" data-icon="walk" class="icon"></div>
+            <div id="icon-hand" data-icon="hand" class="icon"></div>
+          </div>
+          <div id="screen1" class="screen zoomedout">
+            <div class="layer spaceback backdrop"></div>
+            <div class="layer spacefront backdrop"></div>
+            <div class="layer dome">
+              <div class="layer dome-left"></div>
+              <div class="layer dome-right"></div>
+            </div>
+            <div class="layer dome-cover"></div>
+            <div class="layer corridor"></div>
+            <div class="layer lift-exterior"></div>
+            <div class="layer waterfall-panel">
+              <div class="layer waterfall-panel door"></div>
+            </div>
+            <div class="layer buckazoids"></div>
+            <div class="layer dome-bottom"></div>
+            <div class="layer dome-front"></div>
+            <div class="layer fronds-bottom"></div>
+            <div class="layer platform-bottom"></div>
+            <div class="layer platform"></div>
+            <div class="layer fronds-column-base"></div>
+            <div class="layer fronds-bottom"></div>
+            <div class="layer waterfall">
+              <div class="layer waterfall-effect waterfall-effect1"></div>
+              <div class="layer waterfall-effect waterfall-effect2"></div>
+              <div class="layer waterfall-effect waterfall-effect3"></div>
+              <div class="layer waterfall-effect waterfall-effect4"></div>
+              <div class="layer waterfall-effect waterfall-effect5"></div>
+              <div class="layer waterfall-effect waterfall-effect6"></div>
+              <div class="layer waterfall-effect waterfall-effect7"></div>
+              <div class="layer waterfall-effect waterfall-effect8"></div>
+              <div class="layer waterfall-effect waterfall-effect9"></div>
+              <div class="layer waterfall-effect waterfall-effect10"></div>
+
+              <div class="layer waterfall-steam waterfall-steam1"></div>
+              <div class="layer waterfall-steam waterfall-steam2"></div>
+              <div class="layer waterfall-steam waterfall-steam3"></div>
+              <div class="layer waterfall-steam waterfall-steam4"></div>
+              <div class="layer waterfall-steam waterfall-steam5"></div>
+            </div>
+            <div class="layer waterfall-overlay"></div>
+            <div class="layer keycard"></div>
+            <div class="layer plant"></div>
+            <div class="layer fronds-water"></div>
+            <div class="layer rock rock1"></div>
+            <div class="layer rock rock2"></div>
+            <div class="layer rock rock3"></div>
+            <div class="layer rock rock4"></div>
+            <div class="layer rock rock5"></div>
+            <div class="layer guy guy1">
+              <div class="layer guy-arm"></div>
+            </div>
+            <div class="layer guy guy2">
+              <div class="layer guy-arm"></div>
+            </div>
+            <div class="layer shark"></div>
+            <div class="layer blood"></div>
+            <div class="layer arcade"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cluckcontainer">
+        <!--<iframe id="cluck" src="cluck.html" frameborder="0"></iframe>-->
+      </div>
+
+    </div>
+    <div id="resolution"></div>
+    <div id="preloader">
+      <p id="loading-files">
+        Welcome to the installation wizard for SpaceVenture Living Concept Art Phase 5.<br/>
+        ===============================================================================<br/>
+        <br/>
+        Loading...
+      </p>
+      <div class="progress-container">
+        <div class="progress"></div>
+      </div>
+      <div id="insert-disk2-container">
+        <div id="insert-disk2">
+          <div id="insert-disk2-message">
+            Please insert the following disk in drive A:<br/><br/>
+            Setup Disk #2<br/><br/>
+            When you are ready to continue, press ENTER.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="bsod-container">
+      <div id="bsod">
+        <div id="bsod-title">MS-DOS Prompt</div>
+        <div id="bsod-body">
+          An exception 0E has occurred at 0028:C028B0B6 in VxD VCOND(02) +<br/>
+          00001546.   This was called from 0028:C028ABE1 in VxD VCOND(02) +<br/>
+          00001701.   It may be possible to continue normally.<br/><br/>
+          *   Press any key to attempt to continue.<br/>
+          *   Press CTRL+ALT+DEL to restart your computer. You will<br/>
+              lose any unsaved information in all applications.<br/><br/>
+          <div id="press-key">Press any key to continue _</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

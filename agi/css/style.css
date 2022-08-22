@@ -1,0 +1,126 @@
+html, body {
+  background: #000;
+  margin: 0; padding: 0; width: 100%; height: 100%;
+  overflow: hidden;
+}
+body {
+  background: url(../img/ios-bg-pattern.png);
+}
+#game * {
+  -user-select: none;
+}
+#dos {
+  display: none;
+}
+#avatar {
+  position: absolute;
+  width: 42px; height: 99px;
+  z-index: 100;
+  -webkit-transform: translate3d(1,0,0);
+}
+.roger {
+  background: url(../img/mannetje.png) no-repeat;
+}
+.roger.right0 { background-position: 0px 0px; }
+.roger.right1 { background-position: -42px 0px; }
+.roger.right2 { background-position: -84px 0px; }
+.roger.right3 { background-position: -126px 0px; }
+.roger.right4 { background-position: -168px 0px; }
+.roger.right5 { background-position: -210px 0px; }
+.roger.right6 { background-position: -252px 0px; }
+.roger.right7 { background-position: -294px 0px; }
+.roger.left0 { background-position: 0px -99px; }
+.roger.left1 { background-position: -42px -99px; }
+.roger.left2 { background-position: -84px -99px; }
+.roger.left3 { background-position: -126px -99px; }
+.roger.left4 { background-position: -168px -99px; }
+.roger.left5 { background-position: -210px -99px; }
+.roger.left6 { background-position: -252px -99px; }
+.roger.left7 { background-position: -294px -99px; }
+.roger.down0 { background-position: 0px -198px; }
+.roger.down1 { background-position: -42px -198px; }
+.roger.down2 { background-position: -84px -198px; }
+.roger.down3 { background-position: -126px -198px; }
+.roger.down4 { background-position: -210px -198px; }
+.roger.down5 { background-position: -252px -198px; }
+.roger.up0 { background-position: 0px -297px; }
+.roger.up1 { background-position: -42px -297px; }
+.roger.up2 { background-position: -84px -297px; }
+.roger.up3 { background-position: -126px -297px; }
+.roger.up4 { background-position: -210px -297px; }
+.roger.up5 { background-position: -252px -297px; }
+
+#commandline {
+  font: 22px/24px monospace;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  width: 960px;
+  left: 20px; top: 520px;
+}
+#dialog {
+  font: 22px/24px monospace;
+  letter-spacing: 1px;
+  font-weight: bold;
+  position: absolute;
+  width: 450px;
+  background: #fff;
+  left: 50%; top: 50%;
+  margin-left: -220px; margin-top: -100px;
+  padding: 20px 30px;
+  z-index: 9998;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  display: none;
+}
+#border
+{
+  position: absolute;
+  left: 4px; top: 2px; right: 4px; bottom: 2px;
+  border-left: solid #AA0000 4px;
+  border-right: solid #AA0000 4px;
+  border-top: solid #AA0000 2px;
+  border-bottom: solid #AA0000 2px;
+}
+#dialog.hidden {
+  pointer-events: none;
+}
+#dialog.shown {
+  display: block;
+}
+#game {
+  position: relative;
+  background: #000;
+  width: 960px; height: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #000;
+}
+#splash {
+  position: absolute;
+  width: 960px; height: 504px;
+  background: url(../img/splash.png) no-repeat;
+  display: none; 
+}
+.layer {
+  position: absolute;
+  width: 960px; height: 504px;
+  background-repeat: none;
+}
+.screen {
+  display: none;
+}
+#screen1 .corridor { background-image: url(../img/spaceqscene.png);}
+#screen1 .corridor-front-2 { background-image: url(../img/corridor-front-2.png); width:612px; height: 357px; left: 150px; top: 84px; z-index: 998; }
+#screen1 .corridor-front { background-image: url(../img/front.png); width:612px; height: 357px; left: 150px; top: 84px; z-index: 999; }
+
+
+
+
+
+
+

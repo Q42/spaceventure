@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cluck Y'egger</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=940, initial-scale=1.09, user-scalable=no"/>
+	<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+	<style>
+		html, body { overflow: hidden; }
+		body {
+			margin: 0;
+		}
+		body * {
+			cursor: url(img/cursor-pointer-small.png), default !important;
+			user-select: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+		}
+		#cluck {
+			position: absolute;
+			font-family: 'Press Start 2P', cursive;
+			overflow: hidden;
+		}
+		#backdrop {
+			position: absolute;
+			width: 1880px; height: 706px;
+			background-image: url(img/cluck/spacebgtiling.png);
+			animation: backdrop infinite 8s linear;
+			-webkit-animation: backdrop infinite 8s linear;
+			-moz-animation: backdrop infinite 8s linear;
+		}
+		@keyframes backdrop {
+			from {
+				transform: translate3d(0,0,0);
+			}
+			to {
+				transform: translate3d(-256px,0,0);
+			}
+		}
+		@-webkit-keyframes backdrop {
+			from {
+				-webkit-transform: translate3d(0,0,0);
+			}
+			to {
+				-webkit-transform: translate3d(-256px,0,0);
+			}
+		}
+		@-moz-keyframes backdrop {
+			from { -moz-transform: translate3d(0,0,0); }
+			to { -moz-transform: translate3d(-256px,0,0); }
+		}
+		#score {
+			position: relative;
+			font-size: 20px;
+			font-weight: bold;
+			color: white;
+			width: 100px;
+			text-align: center;
+			margin: 20px auto 0 auto;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+			z-index: 2;
+		}
+		#player {
+			position: absolute;
+			background-image: url(img/cluck/cluck.png);
+			background-size: 100%;
+		}
+		#booster {
+			position: absolute;			
+			background-size: 100%;
+			width: 68px;
+			height: 58px;
+			top: -18px;
+			left: -13px;
+		}
+		#booster.frame1 { background-image: url(img/cluck/booster1.png); }
+		#booster.frame2 { background-image: url(img/cluck/booster2.png); }
+		#booster.frame3 { background-image: url(img/cluck/booster3.png); }
+		.message {
+			position: relative;
+			width: 700px;
+			margin: 150px auto 0 auto;
+			color: white;
+			z-index: 2;
+			text-align: center;
+			font-size: 20px;
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+			display: none;
+		}
+		#gameover {
+			font-size: 40px;
+			margin-top: 250px;
+		}
+		.egg {
+			position: absolute;
+			background-image: url(img/cluck/egg.png);
+			background-size: 100%;
+			z-index: 1;
+			transform-origin: 0 0;
+			-webkit-transform-origin: 0 0;
+			-moz-transform-origin: 0 0;
+		}
+		#overlay {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url(img/cluck/overlay.png);
+			z-index: 3;
+		}
+	</style>
+</head>
+<body>
+
+<div id="cluck">
+	<div id="backdrop"></div>
+  <div id="score">0</div>
+	<div id="player">
+		<div id="booster"></div>
+	</div>
+	<div class="message" id="title">Cluck Y'Egger II:<br/><br/><br/>Revenge of the Chun Cluck Do</div>
+	<div class="message" id="msg1">Catch the eggs</div>
+	<div class="message" id="msg2">Whatever you do, don't miss any eggs!</div>
+	<div class="message" id="gameover">GAME OVER</div>
+	<div id="overlay"></div>
+</div>
+
+<!--<script src="js/jquery-1.7.2.min.js"></script>-->
+<script>
+window.requestAnimFrame = (function () {
+  return window.requestAnimationFrame
+		|| window.webkitRequestAnimationFrame
+		|| window.mozRequestAnimationFrame
+		|| window.oRequestAnimationFrame
+		|| window.msRequestAnimationFrame
+		|| function (callback, element) {
+		  window.setTimeout(function () {
+		    callback(+new Date);
+		  }, 10);
+		};
+})();
+
+
+//
+// Timer
+//
+function Timer() {
+	this.gameTime = 0;
+	this.maxStep = 0.05;
+	this.wallLastTimestamp = 0;
+}
+Timer.prototype.tick = function() {
+	var wallCurrent = Date.now();
+	var wallDelta = (wallCurrent - this.wallLastTimestamp) / 1000;
+	this.wallLastTimestamp = wallCurrent;
+
+	var gameDelta = Math.min(wallDelta, this.maxStep);
+	this.gameTime += gameDelta;
+	return gameDelta;
+};
+
+
+//
+// Player
+//
+function Player(cluck) {
+	this.cluck = cluck;
+	this.x = 50;
+	this.y = 100;
+	this.width = 90 * 2;
+	this.height = 36 * 2;
+	this.speed = 500;
+	this.div = document.getElementById('player');
+	this.div.style.width = this.width + 'px';
+	this.div.style.height = this.height + 'px';
+	this.booster = document.getElementById('booster');
+	this.boosterSpeed = 15;
+	this.div.style.left = 0 + 'px';
+	this.div.style.top = 0 + 'px';
+}
+Player.prototype.update = function() {
+	if (cluck.keyUp)
+		this.y -= this.cluck.tick * this.speed;
+	if (cluck.keyDown)
+		this.y += this.cluck.tick * this.speed;
+
+	if (cluck.click != null && Math.abs(cluck.click - (this.y + this.height/2)) > 10) {
+		if (cluck.click > this.y + this.height/2)
+			this.y += this.cluck.tick * this.speed;
+		else
+			this.y -= this.cluck.tick * this.speed;
+	}
+
+	if (this.y < this.cluck.marginTop)
+		this.y = this.cluck.marginTop;
+	if (this.y > this.cluck.height - this.height - this.cluck.marginBottom)
+		this.y = this.cluck.height - this.height - this.cluck.marginBottom;
+};
+Player.prototype.draw = function () {
+	this.div.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+	this.div.style.MozTransform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+	this.div.style.WebkitTransform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+	var cycle = Math.floor((this.cluck.timer.gameTime * this.boosterSpeed % 3)) + 1;
+	this.booster.className = 'frame' + cycle;
+};
+Player.prototype.collides = function(e) {
+	return e.x < this.x + this.width && e.x + e.width > this.x
+		&& e.y < this.y + this.height && e.y + e.height > this.y;
+};
+
+
+//
+// Egg
+//
+function Egg(cluck) {
+	this.cluck = cluck;
+	this.width = 19 * 2;
+	this.height = 11 * 2;
+	this.x = cluck.width;
+	this.y = this.cluck.marginTop + Math.random() * (cluck.height - this.height - this.cluck.marginBottom);
+	this.speed = 200 + Math.random() * 200;
+	this.div = document.createElement('div');
+	this.div.className = 'egg';
+	this.div.style.width = this.width + 'px';
+	this.div.style.height = this.height + 'px';
+	this.cluck.div.appendChild(this.div);
+	this.dead = false;
+	this.div.style.left = 0 + 'px';
+	this.div.style.top = 0 + 'px';
+}
+Egg.prototype.update = function() {
+	this.x -= this.cluck.tick * this.speed;
+};
+Egg.prototype.draw = function () {
+	this.div.style.transform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+	this.div.style.MozTransform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+	this.div.style.WebkitTransform = 'translate3d(' + this.x + 'px, ' + this.y + 'px, 0)';
+};
+Egg.prototype.remove = function() {
+	this.cluck.div.removeChild(this.div);
+	this.dead = true;
+};
+
+
+//
+// Cluck
+//
+function Cluck() {
+	this.scoreDiv = document.getElementById('score');
+	this.initCanvas();
+	this.initListeners();
+	this.marginTop = 20;
+	this.marginBottom = 80;
+}
+Cluck.prototype.reset = function() {
+	this.timer = new Timer();
+	this.player = new Player(this);
+	this.eggs = [];
+	this.score = 0;
+	this.msg = 0;
+	this.click = null;
+	this.hide('title');
+	this.hide('msg1');
+	this.hide('msg2');
+	this.hide('gameover');
+	var eggs = document.getElementsByClassName('egg');
+	for (var i = eggs.length - 1; i >= 0; i--) {
+		this.div.removeChild(eggs[i]);
+	}
+};
+Cluck.prototype.initCanvas = function () {
+	this.width = 940;
+	this.height = 706;
+	this.div = document.getElementById('cluck');
+	this.div.style.width = this.width + 'px';
+	this.div.style.height = this.height + 'px';
+};
+Cluck.prototype.initListeners = function() {
+	var that = this;
+
+	// Key
+	document.addEventListener('keydown', function(e) {
+		if (e.keyCode == 38) that.keyUp = true;
+		if (e.keyCode == 40) that.keyDown = true;
+	}, false);
+	document.addEventListener('keyup', function(e) {
+		if (e.keyCode == 38) that.keyUp = false;
+		if (e.keyCode == 40) that.keyDown = false;
+	}, false);
+	
+	// Mouse
+	this.div.addEventListener('mousedown', function(e) {
+		that.click = e.clientY;
+		that.mousedown = true;
+	}, false);
+	this.div.addEventListener('mouseup', function(e) {
+		that.click = null;
+		that.mousedown = false;
+	}, false);
+	this.div.addEventListener('mousemove', function(e) {
+		if (that.mousedown) {
+			that.click = e.clientY;
+			e.preventDefault();
+		}
+	}, false);
+
+	// Touch
+	this.div.addEventListener('touchstart', function(e) {
+		that.click = e.touches[0].pageY;
+		e.preventDefault();
+	}, false);
+	this.div.addEventListener('touchend', function(e) {
+		that.click = null;
+		e.preventDefault();
+	}, false);
+	this.div.addEventListener('touchmove', function(e) {
+		that.click = e.touches[0].pageY;
+		e.preventDefault();
+	}, false);
+};
+Cluck.prototype.load = function() {
+	this.show('title');
+};
+Cluck.prototype.start = function () {
+	var that = this;
+	this.reset();
+	this.running = true;
+	(function gameLoop() {
+		that.loop();
+		if (that.running) {
+			requestAnimFrame(gameLoop);
+		}
+	})();
+	setTimeout(function () { if (that.running) that.show('msg1'); }, 2000);
+	setTimeout(function () { that.hide('msg1'); }, 5000);
+	setTimeout(function () { if (that.running) that.show('msg2'); }, 7000);
+	setTimeout(function () { that.hide('msg2'); }, 10000);
+};
+Cluck.prototype.loop = function() {
+	this.tick = this.timer.tick();
+	this.update();
+	this.draw();
+};
+Cluck.prototype.update = function() {
+	this.player.update();
+	for (var i = 0; i < this.eggs.length; i++) {
+		var egg = this.eggs[i];
+		egg.update();
+		if (egg.x + egg.width < 0) {
+			this.gameover();
+			return;
+		}
+		if (this.player.collides(egg)) {
+			egg.remove();
+			this.scoreInc();
+		}
+		if (egg.dead) {
+			this.eggs.splice(i, 1);
+			i--;
+		}
+	}
+	if (this.eggs.length < 1 && this.timer.gameTime > 3) {
+		this.eggs.push(new Egg(this));
+	}
+	if (this.score > 2 && this.eggs.length < 100) {
+		this.eggs.push(new Egg(this));
+	}
+};
+Cluck.prototype.draw = function() {
+	this.player.draw();
+	for (var i = 0; i < this.eggs.length; i++) {
+		this.eggs[i].draw();
+	}
+};
+Cluck.prototype.scoreInc = function() {
+	this.score += 1;
+	this.scoreDiv.innerHTML = this.score;
+};
+Cluck.prototype.gameover = function () {
+	this.running = false;
+	this.hide('msg1');
+	this.hide('msg2');
+	this.show('gameover');
+	/*if (window.parent != window) {
+		window.parent.cluckEnd();
+	}*/
+	if (window.parent != window)
+  		window.parent.sound.setVolume('guile', 0);
+
+	document.addEventListener('click', function() {
+		if (window.parent != window) {
+			window.parent.cluckEnd();
+		}
+	});
+	document.addEventListener('keyup', function() {
+		if (window.parent != window) {
+			window.parent.cluckEnd();
+		}
+	});
+	document.addEventListener('touchend', function() {
+		if (window.parent != window) {
+			window.parent.cluckEnd();
+		}
+	});
+};
+Cluck.prototype.show = function(e) {
+	document.getElementById(e).style.display = 'block';
+};
+Cluck.prototype.hide = function(e) {
+	document.getElementById(e).style.display = 'none';
+};
+
+
+var cluck = new Cluck();
+if (window.parent == window) {
+	cluck.start();
+}
+
+</script>
+</body>

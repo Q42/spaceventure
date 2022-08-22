@@ -1,0 +1,46 @@
+
+@-webkit-keyframes guywave {
+  0% { -webkit-transform: rotate(0deg) scale(0.8); }
+  50% { -webkit-transform: rotate(-55deg) scale(0.8); }
+  100% { -webkit-transform: rotate(0deg) scale(0.8); }
+}
+
+@-webkit-keyframes guyfloat {
+  0% {  -webkit-transform: translate(0, 0);}
+  10% { -webkit-transform: translate(3px, 0);}
+  20% { -webkit-transform: translate(12px, 12px);}
+  30% { -webkit-transform: translate(10px, 16px);}
+  40% { -webkit-transform: translate(13px, 12px);}
+  50% { -webkit-transform: translate(14px, 0);}
+  60% { -webkit-transform: translate(10px, 3px);}
+  70% { -webkit-transform: translate(4px, 13px);}
+  80% { -webkit-transform: translate(14px, 14px);}
+  90% { -webkit-transform: translate(12px, 11px);}
+}
+
+@-webkit-keyframes fade {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes space {
+  from { -webkit-transform: translate(-2640px,0) }
+  to { -webkit-transform: translate(0,0) }
+}
+@-webkit-keyframes floating {
+  0% { -webkit-transform: scale(.75) rotate(0deg); }
+  100% { -webkit-transform: scale(.75) rotate(-360deg); }
+}
+@-webkit-keyframes blink {
+  0% { opacity: 1; }
+  47% {opacity: 1; }
+  48% {opacity: 1; }
+  49% {opacity: 1; }
+  50% { opacity: 0; }
+  51% { opacity: 0; }
+  52% { opacity: 0; }
+  53% { opacity: 0; }
+  100% {opacity: 0; }
+}

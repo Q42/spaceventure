@@ -1,0 +1,21 @@
+{
+  "name": "SpaceVenture Kickstarter Prototype: Phase 1",
+  "version": "0.5",
+  "manifest_version": 1,
+
+  "description": "We've reached $100,000, so here's the first playable demo of the SpaceVenture prototype! Have fun!",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "app": {
+    "launch": {
+      "local_path": "index.html"
+    }
+  },
+
+  "homepage_url": "http://tgakick.com/",
+  "offline_enabled": true
+}

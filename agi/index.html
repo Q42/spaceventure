@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html xmanifest="cache.manifest">
+  <head>
+    <title>SpaceVenture 1986</title>
+
+    <meta name="description" content="Playable demo of Guys From Andromeda's living concept art for Spaceventure." />
+
+    <meta name="http-equiv" content="Content-type: text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+
+<!--    <link rel="icon" type="image/png" href="icon16.png" />
+    <link rel="shortcut icon" href="icon16.png" />
+-->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=940, initial-scale=1.09, user-scalable=no"/>
+<!--    <link rel="apple-touch-icon" href="icon128-ios.png"/>
+-->
+    <link href="css/animations.css" type="text/css" rel="stylesheet" />
+    <link href="css/moz-animations.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+<!--    <link href="css/add2home.css" rel="stylesheet" />
+    <script type="text/javascript">
+      var addToHomeConfig = {
+        autostart: true,
+        lifespan: 1000 * 3600,
+        expire: 0
+      };
+    </script>
+	  <script src="js/add2home.js" charset="utf-8"></script>
+-->    
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/dialog.js" charset="utf-8"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/scene1.js"></script>
+    <script src="js/bufferloader.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/avatar.js"></script>
+    <script src="js/parser.js"></script>
+
+    <script src="js/debugger.js"></script>
+
+
+  </head>
+  <body>
+    <div id="game">
+
+      <div id="dos">
+        MS-DOS Version 3.2<br/>
+        (C)Copyright 1987 Microsoft Inc.<br/><br/>
+        C:\Games\SpaceVenture&gt;demo4.bat<br/><br/>
+        Thanks for playing our demo!<br/><br/>
+        C:\Games\SpaceVenture&gt;<span class="blink">|</span>
+      </div>
+
+      <div id="splash">
+      </div>
+
+      <div id="commandline">      
+        <span class="cursor">&gt;</span><span id="command"></span><span class="cursor">_</span>
+      </div>
+   
+      <div id="canvas">
+          <div id="avatar" class="hidden"></div>
+          <div id="dialog" class="hidden">
+            <div id="border"></div>
+            <div id="dialog-text"></div>
+          </div>
+          <div id="screen1" class="screen">
+            <div class="corridor layer"></div>
+            <div class="corridor-front layer"></div>
+            <div class="corridor-front-2 layer"></div>
+          </div>
+      </div>
+
+    </div>
+  </body>
+</html>

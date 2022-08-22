@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SpaceVenture Kickstarter Prototype - Phase 2</title>
+
+    <meta name="http-equiv" content="Content-type: text/html; charset=UTF-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="apple-touch-icon" href="icon128.png"/>
+
+    <link href="css/animations.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+    <script src="js/settings.js"></script>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/dialog.js" charset="utf-8"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/scene1.js"></script>
+    <script src="js/bufferloader.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/avatar.js"></script>
+
+<!--    <script src="js/debugger.js"></script>
+-->
+    <link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'/>
+  </head>
+  <body>
+    <div id="game">
+      <div id="dialog" class="hidden"><div id="dialog-text"></div></div>
+      <div id="eraser" class="desktop-prop"></div>
+      <div id="eraser-crumbs" class="desktop-prop"></div>
+      <div id="tape-top" class="desktop-prop"></div>
+      <div id="tape-bottom-right" class="desktop-prop"></div>
+      <div id="pen" class="desktop-prop"></div>
+      <div id="dos">
+        MS-DOS Version 3.2<br/>
+        (C)Copyright 1987 Microsoft Inc.<br/><br/>
+        C:\Games\SpaceVenture&gt;demo2.bat<br/><br/>
+        Thanks for playing our demo!<br/><br/>
+        C:\Games\SpaceVenture&gt;<span class="blink">|</span>
+      </div>
+
+      <div id="splash">
+        <div id="logo"></div>
+        <div id="dome"></div>
+        <div id="current-phase"></div>
+        <div id="q42"></div>
+        <div id="avatarsketch"></div>
+      </div>
+
+      <div id="canvas">
+        <div id="innercanvas">
+          <div id="avatar" class="hidden"></div>
+          <div id="dialog" class="hidden">
+            <div id="dialog-close"></div>
+            <div id="dialog-text"></div>
+          </div>        
+          <div id="screen1" class="screen zoomedout">
+            <div class="layer spaceback"></div>
+            <div class="layer spacefront"></div>
+            <div class="layer dome">
+              <div class="layer dome-left"></div>
+              <div class="layer dome-right"></div>
+            </div>
+            <div class="layer dome-cover"></div>
+            <div class="layer corridor"></div>
+            <div class="layer lift-exterior"></div>
+            <div class="layer waterfall-panel">
+              <div class="layer waterfall-panel door"></div>
+            </div>
+            <div class="layer dome-bottom"></div>
+            <div class="layer dome-front"></div>
+            <div class="layer fronds-bottom"></div>
+            <div class="layer platform-bottom"></div>
+            <div class="layer platform"></div>
+            <div class="layer fronds-column-base"></div>
+            <div class="layer fronds-bottom"></div>
+            <div class="layer waterfall"></div>
+            <div class="layer waterfall-overlay"></div>
+            <div class="layer keycard"></div>
+            <div class="layer plant"></div>
+            <div class="layer fronds-water"></div>
+            <div class="layer rock rock1"></div>
+            <div class="layer rock rock2"></div>
+            <div class="layer rock rock3"></div>
+            <div class="layer rock rock4"></div>
+            <div class="layer rock rock5"></div>
+            <div class="layer guy guy1">
+              <!--<div class="layer guy1-arm"></div>-->
+            </div>
+            <div class="layer guy guy2"></div>
+            <!--<div class="layer shark gone"></div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="resolution"></div>
+  </body>
+</html>

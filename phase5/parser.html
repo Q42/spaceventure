@@ -1,0 +1,41 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/dialog.js" charset="utf-8"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/scene1.js"></script>
+    <script src="js/bufferloader.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/preload.js"></script>
+    <script src="js/avatar.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/parser.js"></script>
+    <script>
+      var showParsedAs = true;
+      function startGame() {
+        Story.disable();
+      }
+      Parser.start();
+      function showDialog(msg) {
+        $('body').append('<p>' + msg + '</p>');
+      }
+      avatar.redraw = function () { };
+      avatar.walkto = function (x, y) {
+        avatar.position(x, y);
+        $('body').append('<p>Ok.</p>');
+      }
+    </script>
+  </head>
+  <body>
+      <div id="commandline">
+        <span id="command"></span><span id="cursor">|</span>
+        <div id="mic">
+          <input autocomplete="off" type="text" id="speech" x-webkit-speech x-webkit-grammar="builtin:search"/>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
